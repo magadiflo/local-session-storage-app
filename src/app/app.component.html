@@ -13,7 +13,8 @@
 
         <button type="button" class="btn btn-success" (click)="clickSend()">ENVIAR</button>
     </form>
-    <pre>{{ formDataInStorage | json }}</pre>
-    <pre>{{ miFormulario.value | json }}</pre>
+    <br>
+    <pre><b>formDataInStorage</b> {{ formDataInStorage | json }}</pre>
+    <pre><b>miFormulario.value</b> {{ miFormulario.value | json }}</pre>
 </div>
 <router-outlet></router-outlet>

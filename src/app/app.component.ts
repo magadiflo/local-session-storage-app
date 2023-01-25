@@ -23,8 +23,15 @@ export class AppComponent {
   constructor(private _fb: FormBuilder) { }
 
   clickSend(): void {
+    /**
+     * * Forma nativa de trabajar con local/session Storage
+     * * **************************************************
+     * * Forma tradicional de trabajar con un localStorage o sessionStorage, usando la API nativa de JavaScript.
+     * * Nos ofrece métodos ya definidos como el .setItem(...) o getItem(...)
+     */
     localStorage.setItem('form', JSON.stringify(this.miFormulario.value));
-    const formStorage = localStorage.getItem('form');
+    const formStorage = JSON.parse(localStorage.getItem('form')!) as IForm;
+    this.formDataInStorage = formStorage;
   }
 
 }
