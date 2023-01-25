@@ -1,1 +1,19 @@
+<div class="container mt-5">
+    <h1>FORMULARIO DE RECLAMO</h1>
+
+    <form [formGroup]="miFormulario" class="form">
+        <div class="mb-3">
+            <label for="names" class="form-label">Nombres:</label>
+            <input type="text" id="names" formControlName="names" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="claim" class="form-label">Reclamo:</label>
+            <textarea id="claim" formControlName="claim" class="form-control" rows="3"></textarea>
+        </div>
+
+        <button type="button" class="btn btn-success" (click)="clickSend()">ENVIAR</button>
+    </form>
+    <pre>{{ formDataInStorage | json }}</pre>
+    <pre>{{ miFormulario.value | json }}</pre>
+</div>
 <router-outlet></router-outlet>
