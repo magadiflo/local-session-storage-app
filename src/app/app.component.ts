@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
+import { LocalStorageService } from './storage/local-storage.service';
+
 interface IForm {
   names: '';
   claim: '';
@@ -20,9 +22,17 @@ export class AppComponent {
 
   formDataInStorage?: IForm;
 
-  constructor(private _fb: FormBuilder) { }
+  constructor(
+    private _fb: FormBuilder,
+    private _localStorageService: LocalStorageService) { }
 
   clickSend(): void {
+    this._localStorageService.setItem('form', this.miFormulario.value);
+    const formStorage = this._localStorageService.getItem<IForm>('form');
+    this.formDataInStorage = formStorage!;
+  }
+
+  clickSendFormaNativa(): void {
     /**
      * * Forma nativa de trabajar con local/session Storage
      * * **************************************************
