@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { LocalStorageService } from './storage/local-storage.service';
+import { encrypt } from './util/util-encrypt';
 
 interface IForm {
   names: '';

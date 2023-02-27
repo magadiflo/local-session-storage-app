@@ -1,3 +1,5 @@
+import { environment } from '../../environments/environtment';
+import { encrypt, decrypt } from '../util/util-encrypt';
 //* Recordar: La api nativa de local/session Storage implementan Storage
 
 
@@ -15,7 +17,10 @@ export abstract class StorageService implements Storage {
      * * es decir, de antemoano no sabemos qué valor es.
      */
     setItem(key: string, value: unknown): void {
-        const data = JSON.stringify(value);
+        let data = JSON.stringify(value);
+        if (environment.encrypt) {
+            data = encrypt(data);
+        }
         this.api.setItem(key, data);
     }
 
@@ -33,6 +38,9 @@ export abstract class StorageService implements Storage {
     getItem<T>(key: string): T | null {
         const data = this.api.getItem(key);
         if (data !== null) {
+            if (environment.encrypt) {
+                return decrypt<T>(data);
+            }
             return JSON.parse(data) as T;
         }
         return null;
